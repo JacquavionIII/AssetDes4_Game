@@ -1,0 +1,235 @@
+fileFormatVersion: 2
+guid: 3c73fe20aca152b499f0c1c94971f0b0
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: Rig(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest
+      parentName: Rig(Clone)
+      position: {x: -0, y: 4.410834, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 37.80012, y: 37.80012, z: 37.80012}
+    - name: Cylinder
+      parentName: Rig(Clone)
+      position: {x: -0, y: 4.959591, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 17.520908, y: 17.520908, z: 19.295757}
+    - name: Cylinder.001
+      parentName: Rig(Clone)
+      position: {x: -0, y: 1.9299166, z: -0.38648897}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 17.520908, y: 17.520908, z: 70.59235}
+    - name: Cylinder.002
+      parentName: Rig(Clone)
+      position: {x: -0, y: 1.9299166, z: 0.399058}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 17.520908, y: 17.520908, z: 70.59235}
+    - name: Cylinder.003
+      parentName: Rig(Clone)
+      position: {x: -0, y: 0.4065256, z: -0.38648897}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 17.520908, y: 17.520908, z: 70.59235}
+    - name: Cylinder.004
+      parentName: Rig(Clone)
+      position: {x: -0, y: 0.4065256, z: 0.399058}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 17.520908, y: 17.520908, z: 70.59235}
+    - name: Cylinder.005
+      parentName: Rig(Clone)
+      position: {x: -0, y: 4.564818, z: -1.2766073}
+      rotation: {x: -0.0010996241, y: 0, z: -0, w: 0.9999994}
+      scale: {x: 15.37598, y: 15.37598, z: 61.950367}
+    - name: Cylinder.006
+      parentName: Rig(Clone)
+      position: {x: -0, y: 4.5618777, z: -2.6135}
+      rotation: {x: -0.0010996241, y: 0, z: -0, w: 0.9999994}
+      scale: {x: 15.37598, y: 15.37598, z: 61.950367}
+    - name: Cylinder.007
+      parentName: Rig(Clone)
+      position: {x: -0, y: 4.564818, z: 2.5923896}
+      rotation: {x: -0.0010996241, y: 0, z: -0, w: 0.9999994}
+      scale: {x: 15.37598, y: 15.37598, z: 61.950367}
+    - name: Cylinder.008
+      parentName: Rig(Clone)
+      position: {x: -0, y: 4.5618777, z: 1.2554967}
+      rotation: {x: -0.0010996241, y: 0, z: -0, w: 0.9999994}
+      scale: {x: 15.37598, y: 15.37598, z: 61.950367}
+    - name: Dress
+      parentName: Rig(Clone)
+      position: {x: -0, y: 1.3939866, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 172.52235}
+    - name: DressShirt
+      parentName: Rig(Clone)
+      position: {x: -0, y: 4.2177653, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 47.624256, y: 74.28614, z: 74.28614}
+    - name: Head
+      parentName: Rig(Clone)
+      position: {x: -0, y: 5.416848, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 27.82634, y: 27.82634, z: 27.82634}
+    - name: Hood
+      parentName: Rig(Clone)
+      position: {x: -0, y: 5.346358, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 39.239605, y: 39.239605, z: 39.239605}
+    - name: Pelvis
+      parentName: Rig(Clone)
+      position: {x: -0, y: 3.1084108, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 26.420542, y: 26.420542, z: 26.420542}
+    - name: Torso
+      parentName: Rig(Clone)
+      position: {x: -0, y: 3.6992354, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 37.34192, y: 37.34192, z: 37.34192}
+    - name: Torso.001
+      parentName: Rig(Clone)
+      position: {x: -0, y: 4.5758243, z: -0.5758627}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 21.728096, y: 21.728096, z: 21.728096}
+    - name: Torso.002
+      parentName: Rig(Clone)
+      position: {x: -0, y: 4.5758243, z: 0.54223543}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 21.728096, y: 21.728096, z: 21.728096}
+    - name: Torso.003
+      parentName: Rig(Clone)
+      position: {x: -0, y: 2.7508516, z: -0.3922779}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 21.728096, y: 21.728096, z: 21.728096}
+    - name: Torso.004
+      parentName: Rig(Clone)
+      position: {x: -0, y: 2.7508516, z: 0.39119244}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 21.728096, y: 21.728096, z: 21.728096}
+    - name: Torso.005
+      parentName: Rig(Clone)
+      position: {x: -0, y: 1.1951888, z: -0.382653}
+      rotation: {x: -0.70710677, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 18.41439, y: 18.41439, z: 18.41439}
+    - name: Torso.006
+      parentName: Rig(Clone)
+      position: {x: -0, y: 1.1951888, z: 0.39475483}
+      rotation: {x: -0.70710677, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 18.41439, y: 18.41439, z: 18.41439}
+    - name: Torso.007
+      parentName: Rig(Clone)
+      position: {x: -0, y: 4.5600333, z: -1.9213798}
+      rotation: {x: -0.0010996243, y: 0, z: -0, w: 0.9999994}
+      scale: {x: 16.160084, y: 16.160082, z: 16.160082}
+    - name: Torso.008
+      parentName: Rig(Clone)
+      position: {x: -0, y: 4.5600333, z: 1.9476168}
+      rotation: {x: -0.0010996243, y: 0, z: -0, w: 0.9999994}
+      scale: {x: 16.160084, y: 16.160082, z: 16.160082}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
