@@ -1,0 +1,6 @@
+1 add collider to npc 
+2 make collider a trigger 
+3 make a canvas prefab with dialogue 
+4 tag player with tag "Player"
+
+if it doesn't work sacrifice me to the depths of the mcdonalds drive thru 
