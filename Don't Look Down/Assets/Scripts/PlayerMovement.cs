@@ -18,39 +18,38 @@ public class PlayerMovement : MonoBehaviour
     public float groundDistance = 0.4f;         
     public LayerMask groundLayer;
 
-    // [Header("Camera Settings")]
-    // public Transform cameraTransform;
+    [Header("Camera Settings")]
     // [SerializeField] private float mouseSensitivity = 0.1f;
     // [SerializeField] private float controllerSensitivity = 200f;      // Controling the look sensitivity
     // public float smoothTime = 0.05f;        // How quickly the camera lerps
     // public float minLookY = -60f;           // Clamping the vertical look (up) 
     // public float maxLookY = 60f;            // Clamping the vertical look (down)
-    // private float camRotationX;             // Vertical camera rotation
+    private float camRotationX;             // Vertical camera rotation
     private Vector2 currentInput;           // Current input from keyboard/gamepad
-    // private Vector2 currentLook;            // Current input from mouse/gamepad
-    // private Vector2 smoothLook;             // Smoothed look direction
-    // private Vector2 lookVelocity;           // Velocity used by SmoothDamp
+    private Vector2 currentLook;            // Current input from mouse/gamepad
+    private Vector2 smoothLook;             // Smoothed look direction
+    private Vector2 lookVelocity;           // Velocity used by SmoothDamp
 
     [Header("References")]
     public Health health;
     public Rigidbody rb;
     public Animator animator;
-    public SkinnedMeshRenderer targetMeshRenderer; //Reference to the character mesh renderer, since this script is not attched to it (i love finding backdoor methods)
-    public Material healMat;
-    public Material defaultMat;
-    public Transform healVFX;               // Reference to the healing VFX object
-    public Transform senseVFX;              // Reference to the sensing VFX object
     public Transform cameraTrans;
     public float rotationSpeed = 10f;
     private Vector3 velocity;               // Jump velocity
     private bool isGrounded;
 
     [Header("Input Actions")]
-    private InputAction moveAction;         // Input action for movement
-    private InputAction lookAction;         // Input action for looking around
+    public InputAction moveAction;         // Input action for movement
+    public InputAction lookAction;         // Input action for looking around
     private InputAction jumpAction;         // Input action for jumping
     private InputAction attackAction;       // Input action for attacking
-    private InputAction healAction;       // Input action for healing
+
+    [SerializeField] private float mouseSensitivity = 0.1f;
+    [SerializeField] private float controllerSensitivity = 200f;
+    public float smoothTime = 0.05f;        // How quickly the camera lerps
+    public float minLookY = -60f;           // Clamping the vertical look (up) 
+    public float maxLookY = 60f;            // Clamping the vertical look (down)
 
 
     void Awake()
@@ -61,10 +60,9 @@ public class PlayerMovement : MonoBehaviour
         //Get the player's input actions
         var playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions["Move"];
-        //lookAction = playerInput.actions["Look"];
+        lookAction = playerInput.actions["Look"];
         jumpAction = playerInput.actions["Jump"];
         attackAction = playerInput.actions["Attack"];
-        healAction = playerInput.actions["Heal"];
     }
 
     void OnEnable()     // Subscribe to input actions when the script is enabled
@@ -81,10 +79,7 @@ public class PlayerMovement : MonoBehaviour
         jumpAction.performed += OnJump;
 
         attackAction.Enable();
-        attackAction.performed += OnAttack;
-
-        healAction.Enable();
-        healAction.performed += OnHeal;        
+        attackAction.performed += OnAttack;       
     }
 
     void OnDisable()   // Unsubscribe from input actions when the script is disabled
@@ -99,8 +94,6 @@ public class PlayerMovement : MonoBehaviour
 
         attackAction.performed -= OnAttack;
 
-        healAction.performed -= OnHeal;
-
     }
 
     // Called whenever Move input changes
@@ -111,10 +104,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Called whenever Look input changes
-    // public void OnLook(InputAction.CallbackContext context)
-    // {
-    //     currentLook = context.ReadValue<Vector2>();
-    // }
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        currentLook = context.ReadValue<Vector2>();
+    }
 
     public void OnJump(InputAction.CallbackContext context)
     {
@@ -127,42 +120,18 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            animator.SetBool("isShooting", true);
-        }
-        else if (context.canceled)
-        {
-            animator.SetBool("isShooting", false);
-        }
-    }
-
-    public void OnHeal(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-           
-        }
-        else if (context.canceled)
-        {
-            targetMeshRenderer.material = defaultMat;
-            Debug.Log("No meat to heal");
-            animator.SetBool("isHealing", false);
-            healVFX.gameObject.SetActive(false); // Deactivate healing VFX
-        }
+        // if (context.performed)
+        // {
+        //     animator.SetBool("isShooting", true);
+        // }
+        // else if (context.canceled)
+        // {
+        //     animator.SetBool("isShooting", false);
+        // }
     }
 
     public void Start()
     {
-        foreach (var smr in GetComponentsInChildren<SkinnedMeshRenderer>())
-        {
-            if (smr.gameObject.name == "SuperHero_Male") //We're looking for the specific mesh because this thing keeps on screwing with me in the heal function (fuck I hate shaders)
-            {
-                targetMeshRenderer = smr;
-                break;
-            }
-        }
-
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -182,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f; // small downward force keeps player grounded
         }
 
-        //HandleCameraLook(); //Calling this in Update for smoother camera movement
+        HandleCameraLook(); //Calling this in Update for smoother camera movement
     }
 
     void FixedUpdate()
@@ -225,4 +194,28 @@ public class PlayerMovement : MonoBehaviour
         //other stuff: (a side note)
         //The player stops being able to move after a bit. And when standing still and trying to move right or left, the player spins around instead going straight in that direction...
     }
+
+        void HandleCameraLook()
+    {
+        // Detect if the player is using mouse input
+        bool usingMouse = Mouse.current != null && Mouse.current.delta.ReadValue() != Vector2.zero;
+
+        // Scale look input depending on input device
+        Vector2 scaledLook = usingMouse
+        ? currentLook * mouseSensitivity
+        : currentLook * controllerSensitivity * Time.deltaTime;
+
+        // Smooth input with Lerp (or SmoothDamp for extra smoothness)
+        smoothLook = Vector2.SmoothDamp(smoothLook, currentLook, ref lookVelocity, smoothTime); //using the ref to keep track of the velocity to make the smoothing work
+
+        // Horizontal rotation (rotate the player body)
+        transform.Rotate(Vector3.up * smoothLook.x);
+
+        // Vertical rotation (rotate camera only)
+        camRotationX -= smoothLook.y;
+        camRotationX = Mathf.Clamp(camRotationX, minLookY, maxLookY);
+
+        cameraTrans.localRotation = Quaternion.Euler(camRotationX, 0f, 0f);
+    }
+
 }
