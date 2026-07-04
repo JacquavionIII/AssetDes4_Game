@@ -3,7 +3,47 @@ guid: 7c563d2d373dbda4798aa4ca69b49bce
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Between Meat
+    second: {fileID: 2100000, guid: 5cc3ef0972afeeb4091b15e11e849371, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bicep Meat
+    second: {fileID: 2100000, guid: 91c3615edea70434586bf7c7042266f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bones
+    second: {fileID: 2100000, guid: 4485a67f4c4e7914aaf54b48141ab0c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Forearm Meat
+    second: {fileID: 2100000, guid: 88b06fe00860bdf4181ed7a85693b152, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hand Meat
+    second: {fileID: 2100000, guid: 6162ddfd86dc80548a14f3f658d7162c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lower arm meat
+    second: {fileID: 2100000, guid: 0ee5f7a44d6a32240ad98c45284fb5dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tricep Meat
+    second: {fileID: 2100000, guid: 267e6a6e6f6bda04f81288fa2e41359a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wrist meat
+    second: {fileID: 2100000, guid: db69ea8d6129ff34a892e4aac5c2fe00, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

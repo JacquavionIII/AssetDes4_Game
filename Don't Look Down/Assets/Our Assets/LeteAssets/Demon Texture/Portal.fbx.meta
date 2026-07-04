@@ -3,7 +3,22 @@ guid: bd8ea6bc47c71134d9589963011b9730
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bone
+    second: {fileID: 2100000, guid: b86139bd8a826a745b1793793adfca06, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Flesh
+    second: {fileID: 2100000, guid: 5c2f3cbc5096384449e688fc2f3b2b26, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Spinan chord
+    second: {fileID: 2100000, guid: 41c96cbdd25c20940b71c96c43247d3a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
