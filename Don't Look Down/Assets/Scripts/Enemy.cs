@@ -1,0 +1,147 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class Enemy : MonoBehaviour
+{
+    [Header("Enemy Settings")]
+    public NavMeshAgent agent;
+    public Transform player;
+    public LayerMask whatIsGround, whatIsPlayer;
+    public int Health;
+    public Animator anim;
+
+    [Header("Patroling")]
+    public Vector3 walkPoint;
+    public bool walkPointSet;
+    public float walkPointRange;
+
+    [Header("Attacking")]
+    public float timeBetweenAttacks;
+    public bool alreadyAttacked;
+
+    [Header("States")]
+    public float sightRange, attackRange;
+    public bool playerInSightRange, playerInAttackRange;
+
+    public void Awake()
+    {
+        player = GameObject.Find("Player").transform;
+        agent = GetComponent<NavMeshAgent>();
+    }
+
+    public virtual void Start()
+    {
+        anim = GetComponentInChildren<Animator>();
+    }
+
+    protected void Update()
+    {
+        //In update to constantly check for the player
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+        if (!playerInSightRange && !playerInAttackRange)
+        {
+            Patroling();
+        }
+
+        if (playerInSightRange && !playerInAttackRange)
+        {
+            ChasePlayer();
+        }
+
+        if (playerInAttackRange && playerInSightRange)
+        {
+            AttackPlayer();
+        }
+    }
+
+    public virtual void Patroling()
+    {
+        anim.SetBool("Patroling", true);
+        anim.SetBool("EnemyFound", false);
+        if (!walkPointSet) SearchWalkPoint();
+        if (walkPointSet)
+            agent.SetDestination(walkPoint);
+
+        Vector3 distanceToWalkPoint = transform.position - walkPoint;
+
+        //Walkpoint reached
+        if (distanceToWalkPoint.magnitude < 1f)
+            walkPointSet = false;
+    }
+
+    public void SearchWalkPoint()
+    {
+        //Calculate random point in range
+        float randomZ = Random.Range(-walkPointRange, walkPointRange);
+        float randomX = Random.Range(-walkPointRange, walkPointRange);
+
+        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        {
+            walkPointSet = true;
+        }
+    }
+
+    protected virtual void ChasePlayer()
+    {
+        anim.SetBool("EnemyFound", true);
+        anim.SetBool("Patroling", false);
+        agent.SetDestination(player.position);
+
+        // Ensure the enemy faces the player while chasing
+        transform.LookAt(player);
+    }
+
+    protected virtual void AttackPlayer()
+    {
+        anim.SetBool("EnemyFound", false);
+        anim.SetBool("Patroling", false);
+        //Make sure enemy doesn't move
+        agent.SetDestination(transform.position);
+
+        transform.LookAt(player);
+
+        if (!alreadyAttacked)
+        {
+            ///Attack logic here
+            Debug.Log("Enemy Attacked");
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+    }
+
+    public void ResetAttack()
+    {
+        alreadyAttacked = false;
+    }
+
+    protected virtual void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bible"))
+        {
+            Death();
+        }
+
+        
+    }
+
+    private void TakeDamage(int damage)
+    {
+        Health -= damage;
+
+        if (Health <= 0) Invoke(nameof(Death), 0.5f);
+    }
+
+    protected virtual void Death()
+    {
+        anim.SetBool("dead", true);
+        agent.isStopped = true;
+    }
+
+}
