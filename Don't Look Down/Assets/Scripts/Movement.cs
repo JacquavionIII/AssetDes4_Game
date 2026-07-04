@@ -77,7 +77,7 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Escape))
         {
-            SceneManager.LoadScene(0);
+            //SceneManager.LoadScene(0);
         }
     }
 }
