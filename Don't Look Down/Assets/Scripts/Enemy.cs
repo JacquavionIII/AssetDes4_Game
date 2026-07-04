@@ -60,8 +60,8 @@ public class Enemy : MonoBehaviour
 
     public virtual void Patroling()
     {
-        anim.SetBool("Patroling", true);
-        anim.SetBool("EnemyFound", false);
+        anim.SetBool("patrolling", true);
+        anim.SetBool("chasing", false);
         if (!walkPointSet) SearchWalkPoint();
         if (walkPointSet)
             agent.SetDestination(walkPoint);
@@ -89,8 +89,8 @@ public class Enemy : MonoBehaviour
 
     protected virtual void ChasePlayer()
     {
-        anim.SetBool("EnemyFound", true);
-        anim.SetBool("Patroling", false);
+        anim.SetBool("chasing", true);
+        anim.SetBool("patrolling", false);
         agent.SetDestination(player.position);
 
         // Ensure the enemy faces the player while chasing
@@ -99,12 +99,13 @@ public class Enemy : MonoBehaviour
 
     protected virtual void AttackPlayer()
     {
-        anim.SetBool("EnemyFound", false);
-        anim.SetBool("Patroling", false);
+        anim.SetBool("chasing", false);
+        anim.SetBool("patrolling", false);
         //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
 
         transform.LookAt(player);
+        anim.SetTrigger("attacking");
 
         if (!alreadyAttacked)
         {
